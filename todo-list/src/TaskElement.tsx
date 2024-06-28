@@ -8,13 +8,17 @@ interface Task {
 
 interface TaskElementProps {
   task: Task;
+  deleteTask: () => void;
 }
 
-const TaskElement: React.FC<TaskElementProps> = ({ task }) => {
+const TaskElement: React.FC<TaskElementProps> = ({ task, deleteTask }) => {
   return (
-    <div className="bg-red-500 flex flex-row">
+    <div className="flex flex-row justify-between bg-gray-50 border border-gray-300 text-gray-900 text-sm font-bold rounded-lg px-6 py-4 mt-2 w-full hover:bg-gray-200">
+      <div className="flex flex-row">
       <input type="checkbox" name="completed" id='{task.id}' className="mr-2"/>
       <h1>{task.text}</h1>
+      </div>
+      <button onClick={deleteTask} className="ml-5 cursor-pointer text-sm text-red-400 font-thin">Delete</button>
     </div>
   );
 };

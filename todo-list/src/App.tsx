@@ -24,25 +24,33 @@ function App() {
       setText('');
     }
   };
+
+  const deleteTask = (id: number) => {
+    setTasks(tasks.filter(task => task.id !== id));
+  };
+  
   return (
-    <div className="flex flex-col justify-center items-center h-svh">
-      <div className="flex flex-row ">
+    <div className="flex flex-col justify-center items-center h-screen">
+      <div className="flex flex-col items-start w-1/2">
+      <div className="flex flex-row w-full">
         <input 
           type="text" 
           value={text}
           placeholder="Type your task"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)} 
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mr-2">
           
           </input>
-        <button onClick={() => addTask(text)}>Add task</button>
+        <button onClick={() => addTask(text)}
+          className=" text-sm text-white bg-purple-800 rounded-lg px-4 py-2 whitespace-nowrap hover:bg-purple-600">Add task</button>
       </div>
-      <div>
+      <div className="flex flex-col items-start mt-5 w-full">
       {tasks.map((task) => {
         return (
-          <TaskElement key={task.id} task={task}/>
+          <TaskElement key={task.id} task={task} deleteTask={() => deleteTask(task.id)}/>
         )
       })}
+      </div>
       </div>
     </div>
   );
