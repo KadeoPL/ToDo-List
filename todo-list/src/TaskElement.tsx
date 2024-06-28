@@ -12,9 +12,9 @@ interface TaskElementProps {
 
 const TaskElement: React.FC<TaskElementProps> = ({ task }) => {
   return (
-    <div>
-      <p>{task.text}</p>
-      <p>{task.completed ? "Completed" : "Not Completed"}</p>
+    <div className="bg-red-500 flex flex-row">
+      <input type="checkbox" name="completed" id='{task.id}' className="mr-2"/>
+      <h1>{task.text}</h1>
     </div>
   );
 };

@@ -25,21 +25,26 @@ function App() {
     }
   };
   return (
-    <>
-      <input 
-        type="text" 
-        value={text} 
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)} 
-      />
-      <button onClick={() => addTask(text)}>Ok</button>
-      <ul>
+    <div className="flex flex-col justify-center items-center h-svh">
+      <div className="flex flex-row ">
+        <input 
+          type="text" 
+          value={text}
+          placeholder="Type your task"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)} 
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+          
+          </input>
+        <button onClick={() => addTask(text)}>Add task</button>
+      </div>
+      <div>
       {tasks.map((task) => {
         return (
           <TaskElement key={task.id} task={task}/>
         )
       })}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 }
 
