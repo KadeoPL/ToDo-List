@@ -28,7 +28,13 @@ function App() {
   const deleteTask = (id: number) => {
     setTasks(tasks.filter(task => task.id !== id));
   };
-  
+
+  const toggleTaskCompletion = (id: number) => {
+    setTasks(tasks.map(task => 
+      task.id === id ? { ...task, completed: !task.completed } : task
+    ));
+  };
+
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <div className="flex flex-col items-start w-1/2">
@@ -47,7 +53,11 @@ function App() {
       <div className="flex flex-col items-start mt-5 w-full">
       {tasks.map((task) => {
         return (
-          <TaskElement key={task.id} task={task} deleteTask={() => deleteTask(task.id)}/>
+          <TaskElement
+              key={task.id}
+              task={task}
+              deleteTask={() => deleteTask(task.id)}
+              toggleTaskCompletion={() => toggleTaskCompletion(task.id)} />
         )
       })}
       </div>
